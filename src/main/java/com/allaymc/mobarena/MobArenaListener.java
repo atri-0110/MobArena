@@ -22,8 +22,8 @@ public class MobArenaListener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         // Player has quit, remove from arena if present
-        var arenaPlayers = MobArena.getInstance().getArenaPlayers();
-        // Note: Player object at this point doesn't have getUniqueId() directly
-        // The arena will auto-clean when players are tracked
+        var player = event.getPlayer();
+        var uuid = player.getLoginData().getUuid();
+        MobArena.getInstance().leaveArena(uuid);
     }
 }
